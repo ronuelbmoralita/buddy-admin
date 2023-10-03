@@ -1,4 +1,4 @@
-package com.buddy.pinoyone;
+package com.owel.buddy;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

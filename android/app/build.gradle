@@ -74,9 +74,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.buddy.pinoyone"
+    namespace "com.owel.buddy"
     defaultConfig {
-        applicationId "com.buddy.pinoyone"
+        applicationId "com.owel.buddy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
