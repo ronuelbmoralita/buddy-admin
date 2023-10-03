@@ -1,4 +1,4 @@
-package com.buddy;
+package com.buddy.pinoyone;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
