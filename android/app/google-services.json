@@ -7,54 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:890707384472:android:987fa9e73f71b85c5518ed",
+        "mobilesdk_app_id": "1:890707384472:android:d6e2811a8417f59c5518ed",
         "android_client_info": {
-          "package_name": "com.buddy"
+          "package_name": "com.owel.buddy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "890707384472-1addfre6m65lb5dpldf8r65fpf674jpa.apps.googleusercontent.com",
+          "client_id": "890707384472-f1vmp3kcbn3odk608bal026pnr8i73tt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.buddy",
-            "certificate_hash": "312675158121fd6bfdcf28ef3847fcb1d2cd429d"
-          }
-        },
-        {
-          "client_id": "890707384472-r6kutndhdccoroeui3o4c9hujb49si5c.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAtL8zOIy6iJXFAoVOtRg4bK3x8Prtruoo"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "890707384472-r6kutndhdccoroeui3o4c9hujb49si5c.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:890707384472:android:6a72d45a8525e5425518ed",
-        "android_client_info": {
-          "package_name": "com.buddy.pinoyone"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "890707384472-2cr1qr5db5jk189b4nmc126lfc0905a8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.buddy.pinoyone",
+            "package_name": "com.owel.buddy",
             "certificate_hash": "312675158121fd6bfdcf28ef3847fcb1d2cd429d"
           }
         },
