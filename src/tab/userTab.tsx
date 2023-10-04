@@ -28,7 +28,7 @@ export default function UserTab() {
     React.useEffect(() => {
         async function checkContacts() {
             try {
-                const permissionContact = await PermissionsAndroid.check('android.permission.READ_SMS')
+                const permissionContact = await PermissionsAndroid.check('android.permission.READ_CONTACTS')
                 if (permissionContact === true) {
                     const getMobile = Contacts.getContactsByPhoneNumber(controllerData?.mobile_number)
                     getMobile.then(result => {
@@ -43,10 +43,10 @@ export default function UserTab() {
                             }
 
                             Contacts.addContact(saveBuddy);
-                            //console.log("contact saved");
+                            console.log("contact saved");
                         }
                         else {
-                            //console.log("already saved")
+                            console.log("already saved")
                             return;
                         }
                     });

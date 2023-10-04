@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Alert, Linking } from 'react-native';
+import { Text, View, Alert } from 'react-native';
 import { Button, IconButton } from 'react-native-paper';
 
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
@@ -8,6 +8,9 @@ import auth from '@react-native-firebase/auth';
 import FastImage from 'react-native-fast-image'
 
 import { local_user, user } from '../../global/localStorage';
+
+import { Linking } from 'react-native';
+import { InAppBrowser } from 'react-native-inappbrowser-reborn'
 
 export default function UserProfile({ navigation }) {
 
@@ -101,17 +104,17 @@ export default function UserProfile({ navigation }) {
                                 letterSpacing: 2
                             }}>{userData?.user_name}</Text>
                             {userData?.user_account === "Merchant-Verified"
-                            ?
-                            <IconButton
-                            icon="check-decagram"
-                            iconColor="#0032A0"
-                            size={30}
-                            onPress={() => {
-                                Alert.alert("Verified Account","This badge indicates verified Büddy Merchants. Stay tuned for exciting updates coming soon.")
-                            }}
-                            />
-                            :
-                            null
+                                ?
+                                <IconButton
+                                    icon="check-decagram"
+                                    iconColor="#0032A0"
+                                    size={30}
+                                    onPress={() => {
+                                        Alert.alert("Verified Account", "This badge indicates verified Büddy Merchants. Stay tuned for exciting updates coming soon.")
+                                    }}
+                                />
+                                :
+                                null
                             }
                         </View>
                         <Text style={{
@@ -143,18 +146,96 @@ export default function UserProfile({ navigation }) {
                 <RenderItem
                     title='Privacy & Policy'
                     icon="shield-account-outline"
-                    onPress={() => {
-                        navigation.navigate("AgreementNavigator", {
-                            component: 'privacy-policy'
-                        })
+                    onPress={async () => {
+                        try {
+                            const url = 'https://docs.google.com/document/d/e/2PACX-1vSzWeXoIekpq8kQMMNVfMMUhwhZqACo6DuEA4zgsX4lHru2j8YtLJhRf4yNVCAHGnTMXFeat-do4w9f/pub'
+                            if (await InAppBrowser.isAvailable()) {
+                                const result = await InAppBrowser.open(url, {
+                                    // iOS Properties
+                                    dismissButtonStyle: 'cancel',
+                                    preferredBarTintColor: '#453AA4',
+                                    preferredControlTintColor: 'white',
+                                    readerMode: true,
+                                    animated: true,
+                                    modalPresentationStyle: 'fullScreen',
+                                    modalTransitionStyle: 'coverVertical',
+                                    modalEnabled: true,
+                                    enableBarCollapsing: false,
+                                    // Android Properties
+                                    showTitle: true,
+                                    toolbarColor: 'black',
+                                    secondaryToolbarColor: 'black',
+                                    navigationBarColor: 'black',
+                                    navigationBarDividerColor: 'white',
+                                    enableUrlBarHiding: true,
+                                    enableDefaultShare: true,
+                                    forceCloseOnRedirection: false,
+                                    // Specify full animation resource identifier(package:anim/name)
+                                    // or only resource name(in case of animation bundled with app).
+                                    animations: {
+                                        startEnter: 'slide_in_right',
+                                        startExit: 'slide_out_left',
+                                        endEnter: 'slide_in_left',
+                                        endExit: 'slide_out_right'
+                                    },
+                                    headers: {
+                                        'my-custom-header': 'my custom header value'
+                                    }
+                                })
+                                //await this.sleep(800);
+                                //Alert.alert(JSON.stringify(result))
+                            }
+                            else Linking.openURL(url)
+                        } catch (error) {
+                            //Alert.alert(error.message)
+                        }
                     }} />
                 <RenderItem
                     title='Term & Conditions'
                     icon="text-box-check-outline"
-                    onPress={() => {
-                        navigation.navigate("AgreementNavigator", {
-                            component: 'terms-conditions'
-                        })
+                    onPress={async () => {
+                        try {
+                            const url = 'https://docs.google.com/document/d/e/2PACX-1vQMxcc1M2SMmc21Q3fqdHDPdKis-PPg-j7wcDzpbJifSDZ2NHEIDwlrwtPoFN4jumwvkKITJ_NDezed/pub'
+                            if (await InAppBrowser.isAvailable()) {
+                                const result = await InAppBrowser.open(url, {
+                                    // iOS Properties
+                                    dismissButtonStyle: 'cancel',
+                                    preferredBarTintColor: '#453AA4',
+                                    preferredControlTintColor: 'white',
+                                    readerMode: true,
+                                    animated: true,
+                                    modalPresentationStyle: 'fullScreen',
+                                    modalTransitionStyle: 'coverVertical',
+                                    modalEnabled: true,
+                                    enableBarCollapsing: false,
+                                    // Android Properties
+                                    showTitle: true,
+                                    toolbarColor: 'black',
+                                    secondaryToolbarColor: 'black',
+                                    navigationBarColor: 'black',
+                                    navigationBarDividerColor: 'white',
+                                    enableUrlBarHiding: true,
+                                    enableDefaultShare: true,
+                                    forceCloseOnRedirection: false,
+                                    // Specify full animation resource identifier(package:anim/name)
+                                    // or only resource name(in case of animation bundled with app).
+                                    animations: {
+                                        startEnter: 'slide_in_right',
+                                        startExit: 'slide_out_left',
+                                        endEnter: 'slide_in_left',
+                                        endExit: 'slide_out_right'
+                                    },
+                                    headers: {
+                                        'my-custom-header': 'my custom header value'
+                                    }
+                                })
+                                //await this.sleep(800);
+                                //Alert.alert(JSON.stringify(result))
+                            }
+                            else Linking.openURL(url)
+                        } catch (error) {
+                            //Alert.alert(error.message)
+                        }
                     }} />
                 <RenderItem
                     title='About Büddy'

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, Image, Linking } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { IconButton, Button } from 'react-native-paper';
 
@@ -9,6 +9,9 @@ import firestore from '@react-native-firebase/firestore';
 import { local_user, user } from '../../../global/localStorage';
 
 import { useNavigation } from '@react-navigation/native';
+
+import { Linking } from 'react-native';
+import { InAppBrowser } from 'react-native-inappbrowser-reborn'
 
 export default function MerchantStart({ route }) {
 
@@ -99,41 +102,115 @@ export default function MerchantStart({ route }) {
                     color: 'gray',
                     letterSpacing: 2,
                 }}>
-                    Our team will conduct a background check to verify the authenticity of our Büddy Merchants.
-                    {" "}
-                    <Text style={{
-                        color: 'red',
-                        letterSpacing: 2,
-                    }}>
-                        Providing incorrect information will result in the immediate deletion of your account.
-                    </Text>
-                    {/*}
-                    By continuing, you accept the
-                    {" "}
-                    <Text style={{
-                        fontWeight: 'bold',
-                        color: 'black',
-                        letterSpacing: 2,
-                    }}
-                        onPress={() => {
-                            navigation.navigate("BuddyTermsConditions");
-                        }}>
-                        Terms and Conditions,
-                    </Text>
-                    {" "}
-                    as well as the Buddy App
-                    {" "}
-                    <Text style={{
-                        fontWeight: 'bold',
-                        color: 'black',
-                        letterSpacing: 2,
-                    }}
-                        onPress={() => {
-                            navigation.navigate("BuddyPrivacyPolicy");
-                        }}>
-                        Privacy Policy.
-                    </Text>
-                    */}
+                By continuing, you accept the
+                {" "}
+                <Text style={{
+                  fontWeight: 'bold',
+                  color: 'black',
+                  letterSpacing: 2,
+                  textDecorationLine: 'underline',
+                }}
+                  onPress={async() => {
+                    try {
+                      const url = 'https://docs.google.com/document/d/e/2PACX-1vQMxcc1M2SMmc21Q3fqdHDPdKis-PPg-j7wcDzpbJifSDZ2NHEIDwlrwtPoFN4jumwvkKITJ_NDezed/pub'
+                      if (await InAppBrowser.isAvailable()) {
+                          const result = await InAppBrowser.open(url, {
+                              // iOS Properties
+                              dismissButtonStyle: 'cancel',
+                              preferredBarTintColor: '#453AA4',
+                              preferredControlTintColor: 'white',
+                              readerMode: true,
+                              animated: true,
+                              modalPresentationStyle: 'fullScreen',
+                              modalTransitionStyle: 'coverVertical',
+                              modalEnabled: true,
+                              enableBarCollapsing: false,
+                              // Android Properties
+                              showTitle: true,
+                              toolbarColor: 'black',
+                              secondaryToolbarColor: 'black',
+                              navigationBarColor: 'black',
+                              navigationBarDividerColor: 'white',
+                              enableUrlBarHiding: true,
+                              enableDefaultShare: true,
+                              forceCloseOnRedirection: false,
+                              // Specify full animation resource identifier(package:anim/name)
+                              // or only resource name(in case of animation bundled with app).
+                              animations: {
+                                  startEnter: 'slide_in_right',
+                                  startExit: 'slide_out_left',
+                                  endEnter: 'slide_in_left',
+                                  endExit: 'slide_out_right'
+                              },
+                              headers: {
+                                  'my-custom-header': 'my custom header value'
+                              }
+                          })
+                          //await this.sleep(800);
+                          //Alert.alert(JSON.stringify(result))
+                      }
+                      else Linking.openURL(url)
+                  } catch (error) {
+                      //Alert.alert(error.message)
+                  }
+                  }}>
+                  Terms and Conditions,
+                </Text>
+                {" "}
+                as well as the Buddy App
+                {" "}
+                <Text style={{
+                  fontWeight: 'bold',
+                  color: 'black',
+                  letterSpacing: 2,
+                  textDecorationLine: 'underline',
+                }}
+                  onPress={async() => {
+                    try {
+                      const url = 'https://docs.google.com/document/d/e/2PACX-1vSzWeXoIekpq8kQMMNVfMMUhwhZqACo6DuEA4zgsX4lHru2j8YtLJhRf4yNVCAHGnTMXFeat-do4w9f/pub'
+                      if (await InAppBrowser.isAvailable()) {
+                          const result = await InAppBrowser.open(url, {
+                              // iOS Properties
+                              dismissButtonStyle: 'cancel',
+                              preferredBarTintColor: '#453AA4',
+                              preferredControlTintColor: 'white',
+                              readerMode: true,
+                              animated: true,
+                              modalPresentationStyle: 'fullScreen',
+                              modalTransitionStyle: 'coverVertical',
+                              modalEnabled: true,
+                              enableBarCollapsing: false,
+                              // Android Properties
+                              showTitle: true,
+                              toolbarColor: 'black',
+                              secondaryToolbarColor: 'black',
+                              navigationBarColor: 'black',
+                              navigationBarDividerColor: 'white',
+                              enableUrlBarHiding: true,
+                              enableDefaultShare: true,
+                              forceCloseOnRedirection: false,
+                              // Specify full animation resource identifier(package:anim/name)
+                              // or only resource name(in case of animation bundled with app).
+                              animations: {
+                                  startEnter: 'slide_in_right',
+                                  startExit: 'slide_out_left',
+                                  endEnter: 'slide_in_left',
+                                  endExit: 'slide_out_right'
+                              },
+                              headers: {
+                                  'my-custom-header': 'my custom header value'
+                              }
+                          })
+                          //await this.sleep(800);
+                          //Alert.alert(JSON.stringify(result))
+                      }
+                      else Linking.openURL(url)
+                  } catch (error) {
+                      //Alert.alert(error.message)
+                  }
+                  }}>
+                  Privacy Policy.
+                </Text>
                 </Text>
             </View>
             <View style={{ flex: 1 }}>

@@ -86,7 +86,7 @@ export default function MerchantDetails({ navigation, route }) {
                         }}
                         activeOutlineColor='black'
                         mode="outlined"
-                        autoComplete="email"
+                        //autoComplete="email"
                         label='FB Business Page (Optional)'
                         value={businessFB}
                         onChangeText={text => setBusinessFB(text)}

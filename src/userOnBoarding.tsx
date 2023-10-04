@@ -17,6 +17,9 @@ import { PageIndicator } from 'react-native-page-indicator';
 import { GetAllPermissions } from './global/permissions';
 import { local_launch } from './global/localStorage';
 
+import { Linking } from 'react-native';
+import { InAppBrowser } from 'react-native-inappbrowser-reborn'
+
 const DATA = [
   {
     image: require("./images/onBoarding/buddy.png"),
@@ -89,12 +92,12 @@ const DATA = [
     image: require("./images/onBoarding/thank-you.png"),
     backgroundColor: '#db4747',
     title:
-      'Thank you',
-    description:
-      'Our team will conduct a background check to verify the authenticity of our Buddy users. ',
+      'Welcome',
+    //description:'Our team will conduct a background check to verify the authenticity of our Buddy users. ',
     descriptionRed:
       'Providing incorrect information or inappropriate images will result in the immediate deletion of your account.',
     color: 'red',
+    agreement: true,
   },
 ];
 
@@ -166,12 +169,125 @@ export default function UserOnBoarding({ navigation }) {
             letterSpacing: 2
           }}>
             {item.description}
-            <Text style={{
-              color: item.color,
-              letterSpacing: 2
-            }}>
-              {item.descriptionRed}
-            </Text>
+            {item.agreement === true
+              ?
+              <Text style={{
+                color: 'gray',
+                letterSpacing: 2,
+              }}>
+                By continuing, you accept the
+                {" "}
+                <Text style={{
+                  fontWeight: 'bold',
+                  color: 'black',
+                  letterSpacing: 2,
+                  textDecorationLine: 'underline',
+                }}
+                  onPress={async () => {
+                    try {
+                      const url = 'https://docs.google.com/document/d/e/2PACX-1vQMxcc1M2SMmc21Q3fqdHDPdKis-PPg-j7wcDzpbJifSDZ2NHEIDwlrwtPoFN4jumwvkKITJ_NDezed/pub'
+                      if (await InAppBrowser.isAvailable()) {
+                        const result = await InAppBrowser.open(url, {
+                          // iOS Properties
+                          dismissButtonStyle: 'cancel',
+                          preferredBarTintColor: '#453AA4',
+                          preferredControlTintColor: 'white',
+                          readerMode: true,
+                          animated: true,
+                          modalPresentationStyle: 'fullScreen',
+                          modalTransitionStyle: 'coverVertical',
+                          modalEnabled: true,
+                          enableBarCollapsing: false,
+                          // Android Properties
+                          showTitle: true,
+                          toolbarColor: 'black',
+                          secondaryToolbarColor: 'black',
+                          navigationBarColor: 'black',
+                          navigationBarDividerColor: 'white',
+                          enableUrlBarHiding: true,
+                          enableDefaultShare: true,
+                          forceCloseOnRedirection: false,
+                          // Specify full animation resource identifier(package:anim/name)
+                          // or only resource name(in case of animation bundled with app).
+                          animations: {
+                            startEnter: 'slide_in_right',
+                            startExit: 'slide_out_left',
+                            endEnter: 'slide_in_left',
+                            endExit: 'slide_out_right'
+                          },
+                          headers: {
+                            'my-custom-header': 'my custom header value'
+                          }
+                        })
+                        //await this.sleep(800);
+                        //Alert.alert(JSON.stringify(result))
+                      }
+                      else Linking.openURL(url)
+                    } catch (error) {
+                      //Alert.alert(error.message)
+                    }
+                  }}>
+                  Terms and Conditions,
+                </Text>
+                {" "}
+                as well as the Buddy App
+                {" "}
+                <Text style={{
+                  fontWeight: 'bold',
+                  color: 'black',
+                  letterSpacing: 2,
+                  textDecorationLine: 'underline',
+                }}
+                  onPress={async () => {
+                    try {
+                      const url = 'https://docs.google.com/document/d/e/2PACX-1vSzWeXoIekpq8kQMMNVfMMUhwhZqACo6DuEA4zgsX4lHru2j8YtLJhRf4yNVCAHGnTMXFeat-do4w9f/pub'
+                      if (await InAppBrowser.isAvailable()) {
+                        const result = await InAppBrowser.open(url, {
+                          // iOS Properties
+                          dismissButtonStyle: 'cancel',
+                          preferredBarTintColor: '#453AA4',
+                          preferredControlTintColor: 'white',
+                          readerMode: true,
+                          animated: true,
+                          modalPresentationStyle: 'fullScreen',
+                          modalTransitionStyle: 'coverVertical',
+                          modalEnabled: true,
+                          enableBarCollapsing: false,
+                          // Android Properties
+                          showTitle: true,
+                          toolbarColor: 'black',
+                          secondaryToolbarColor: 'black',
+                          navigationBarColor: 'black',
+                          navigationBarDividerColor: 'white',
+                          enableUrlBarHiding: true,
+                          enableDefaultShare: true,
+                          forceCloseOnRedirection: false,
+                          // Specify full animation resource identifier(package:anim/name)
+                          // or only resource name(in case of animation bundled with app).
+                          animations: {
+                            startEnter: 'slide_in_right',
+                            startExit: 'slide_out_left',
+                            endEnter: 'slide_in_left',
+                            endExit: 'slide_out_right'
+                          },
+                          headers: {
+                            'my-custom-header': 'my custom header value'
+                          }
+                        })
+                        //await this.sleep(800);
+                        //Alert.alert(JSON.stringify(result))
+                      }
+                      else Linking.openURL(url)
+                    } catch (error) {
+                      //Alert.alert(error.message)
+                    }
+                  }}>
+                  Privacy Policy.
+                </Text>
+              </Text>
+              :
+              null
+            }
           </Text>
         </View>
       </Animated.View>
