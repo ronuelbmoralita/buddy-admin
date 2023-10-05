@@ -249,7 +249,7 @@ function App() {
 
   const json = local_launch.getString('local_launch') // { 'username': 'Marc', 'age': 21 }
 
-  if (json) {
+  if (!json) {
     return (
       <NavigationContainer>
         <GlobalAlertProvider>

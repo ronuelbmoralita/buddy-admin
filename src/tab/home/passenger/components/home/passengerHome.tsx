@@ -276,6 +276,29 @@ export default function PassengerHome({ navigation, route }) {
                         </Marker>
                     }
                 </MapView>
+                {activityData.length === 0
+                    ?
+                    <View style={{
+                        flexDirection: 'row',
+                        position: 'absolute',
+                        bottom: 0,
+                        right: 0,
+                        margin: 10
+                    }}>
+                        <IconButton
+                            mode='outlined'
+                            icon="crosshairs-gps"
+                            iconColor='white'
+                            containerColor='black'
+                            size={40}
+                            onPress={() => {
+                                getCurrentLocation();
+                            }}
+                        />
+                    </View>
+                    :
+                    null
+                }
             </View>
             {/*DROPDOWN*/}
             {activityData.length === 0
