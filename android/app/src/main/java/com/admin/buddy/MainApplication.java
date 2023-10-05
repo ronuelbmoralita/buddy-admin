@@ -1,4 +1,4 @@
-package com.owel.buddy;
+package com.admin.buddy;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
